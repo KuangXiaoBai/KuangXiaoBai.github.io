@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            bottom: 0;
+            text-decoration: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* 背景色 */
+        }
+
+        .shell {
+            width: 90%;
+            max-width: 600px;
+            height: 85vh;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            border: 10px #fff solid;
+            box-shadow: 20px 30px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .images {
+            width: 500%;
+            height: 100%;
+            display: flex;
+            position: absolute;
+            left: 0;
+            transition: .2s;
+        }
+
+        .img {
+            width: 100%;
+            height: auto; /* 让图片高度自适应 */
+            background-size: cover;
+        }
+
+        /* 图片样式和链接 */
+        .img:nth-child(1) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/SUxRYoaL.jpg");
+        }
+
+        .img:nth-child(2) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/pcnHneLv.jpg");
+        }
+
+        .img:nth-child(3) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/cyfyXnwb.jpg");
+        }
+
+        .img:nth-child(4) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/wD9F4pG7.jpg");
+        }
+
+        .img:nth-child(5) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/9o4FFwxj.jpg");
+        }
+
+        .min-images {
+            display: flex;
+            justify-content: space-evenly;
+            position: absolute;
+            top: 10px;
+            width: 60%;
+            z-index: 999;
+            right: 21%;
+        }
+
+        .min {
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            border-radius: 50%;
+            background-size: cover;
+            border: solid rgba(255, 255, 255, 0.5) 5px;
+            background-position: 0px 0;
+        }
+
+        .min:hover {
+            border-color: darkorange;
+        }
+
+        /* 小图片样式和链接 */
+        .min:nth-child(1) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/SUxRYoaL.jpg");
+        }
+
+        .min:nth-child(2) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/pcnHneLv.jpg");
+        }
+
+        .min:nth-child(3) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/cyfyXnwb.jpg");
+        }
+
+        .min:nth-child(4) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/wD9F4pG7.jpg");
+        }
+
+        .min:nth-child(5) {
+            background-image: url("https://img2.imgtp.com/2024/03/23/9o4FFwxj.jpg");
+        }
+
+        .button {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            user-select: none;
+        }
+
+        .button-left,
+        .button-right {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            border-radius: 0 10px 10px 0;
+            align-items: center;
+            text-align: center;
+            font-size: 50px;
+            background-color: rgba(160, 193, 255, 0.7);
+            padding: 0 20px;
+            cursor: pointer;
+            line-height: 60px;
+            bottom: 40%;
+            font-size: 30px;
+        }
+
+        .button-right {
+            right: 0;
+            border-radius: 10px 0 0 10px;
+        }
+
+        .button-left:hover,
+        .button-right:hover {
+            background-color: darkorange;
+        }
+
+        /* 添加媒体查询 */
+        @media screen and (max-width: 768px) {
+            .shell {
+                width: 90%;
+                max-width: none;
+                height: 70vh;
+            }
+
+            .button-left,
+            .button-right {
+                font-size: 30px;
+                line-height: 60px;
+            }
+        }
+        #music {
+            position: fixed;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shell">
+        <ul class="min-images">
+            <li class="min"></li>
+            <li class="min"></li>
+            <li class="min"></li>
+            <li class="min"></li>
+            <li class="min"></li>
+        </ul>
+        <ul class="images">
+            <li class="img"></li>
+            <li class="img"></li>
+            <li class="img"></li>
+            <li class="img"></li>
+            <li class="img"></li>
+        </ul>
+        <div class="button">
+            <div class="button-left">&lt;</div>
+            <div class="button-right">&gt;</div>
+        </div>
+    </div>
+
+    <audio loop preload="auto" id="music" autoplay controls>
+        <source src="http://music.163.com/song/media/outer/url?id=1959190717.mp3">
+    </audio>
+
+    <script>
+        let left = document.querySelector(".button-left");
+        let right = document.querySelector(".button-right");
+        let min = document.querySelectorAll(".min");
+        let images = document.querySelector(".images");
+        let index = 0;
+        let time;
+
+        function position() {
+            images.style.left = (index * -100) + "%";
+        }
+
+        function add() {
+            if (index >= min.length - 1) {
+                index = 0;
+            } else {
+                index++;
+            }
+        }
+
+        function desc() {
+            if (index < 1) {
+                index = min.length - 1;
+            } else
+            {
+                index--;
+            }
+        }
+
+        function timer() {
+            time = setInterval(() => {
+                index++;
+                desc();
+                add();
+                position();
+            }, 3000);
+        }
+
+        left.addEventListener("click", () => {
+            desc();
+            position();
+            clearInterval(time);
+            timer();
+        });
+
+        right.addEventListener("click", () => {
+            add();
+            position();
+            clearInterval(time);
+            timer();
+        });
+
+        for (let i = 0; i < min.length; i++) {
+            min[i].addEventListener("click", () => {
+                index = i;
+                position();
+                clearInterval(time);
+                timer();
+            });
+        }
+
+        timer();
+    </script>
+</body>
+
+</html>
